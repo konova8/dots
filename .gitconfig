@@ -1,0 +1,7 @@
+[user]
+	name = konova8
+	email = canovasimo@gmail.com
+[alias]
+	co = checkout
+[init]
+	defaultBranch = main
