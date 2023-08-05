@@ -19,6 +19,9 @@ echo "Which mail are you using?"
 read -p 'Mail: ' mail
 ssh-keygen -t ed25519 -C $mail
 
+echo "Updating the yadm repo origin URL"
+yadm remote set-url origin "git@github.com:konova8/dots.git"
+
 echo -e "Remeber to do these other things:/n\
 - Change this setting in about:config in firefox\n\
   - toolkit.tabbox.switchByScrolling = true\n\
