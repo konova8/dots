@@ -1,7 +1,7 @@
 ### Appereance
 set $font pango:FontAwesome 10
 font $font
-output * bg /home/sc/gitrepos/dotfiles/wallpapers/digital/eclipse.jpg fill
+output * bg /home/sc/wallpapers/eclipse.jpg fill
 
 ### Display position
 # For Laptop Screen aside External Screen
