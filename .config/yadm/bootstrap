@@ -4,6 +4,9 @@
 # be run from within $HOME (assuming this is the root of your dotfiles)
 cd "$HOME"
 
+echo "Update system"
+sudo pacman -Syu
+
 echo "Installing packages with pacman"
 sudo pacman -S wget git firefox thunderbird code discord alacritty highlight ranger neovim lazygit sway swaybg mpv grim swaylock swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop
 
