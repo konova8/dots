@@ -5,7 +5,7 @@
 cd "$HOME"
 
 echo "Installing packages with pacman"
-pacman -S wget git firefox thunderbird code discord alacritty highlight ranger neovim lazygit sway swaybg mpv grim swaylock swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop
+sudo pacman -S wget git firefox thunderbird code discord alacritty highlight ranger neovim lazygit sway swaybg mpv grim swaylock swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop
 
 echo "Installing packages from AUR with yay"
 yay -S code-marketplace spotify rofi-lbonn-wayland
@@ -22,7 +22,7 @@ ssh-keygen -t ed25519 -C $mail
 echo "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:konova8/dots.git"
 
-echo -e "Remeber to do these other things:/n\
+echo -e "Remeber to do these other things:\n\
 - Change this setting in about:config in firefox\n\
   - toolkit.tabbox.switchByScrolling = true\n\
 -  Import settings for YT browser extension\n\
