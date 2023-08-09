@@ -10,8 +10,11 @@
 ### Make completion case-insensitive ###
 bind -s 'set completion-ignore-case on'
 
-### Aliases ###
+### Global Variables ###
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
+### Aliases ###
 alias ls='ls --color=auto'
 alias ll='ls -laF'
 alias grep='grep --colour=auto'
