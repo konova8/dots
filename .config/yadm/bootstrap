@@ -4,30 +4,34 @@
 # be run from within $HOME (assuming this is the root of your dotfiles)
 cd "$HOME"
 
-echo "Update system"
-sudo pacman -Syu
+echo "########## Update system"
+sudo pacman -Syu --noconfirm
 
-echo "Installing packages with pacman"
-sudo pacman -S wget git firefox thunderbird code discord alacritty highlight ranger neovim lazygit sway swaybg mpv grim swaylock swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop
+echo "########## Installing packages with pacman"
+sudo pacman -S --noconfirm --needed wget git firefox thunderbird code discord alacritty highlight \
+  ranger neovim lazygit sway swaybg mpv grim swaylock swayidle go npm \
+  telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
+  flameshot jq btop brightnessctl foot wl-clipboard
 
-echo "Installing packages from AUR with yay"
-yay -S code-marketplace spotify rofi-lbonn-wayland
+echo "########## Installing packages from AUR with yay"
+yay -S --noconfirm --needed code-marketplace spotify rofi-lbonn-wayland
 
 echo "Setting dark theme system wide"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
-echo "Generating SSH keys with ed25519 algorithm"
+echo "########## Generating SSH keys with ed25519 algorithm"
 echo "Which mail are you using?"
 read -p 'Mail: ' mail
 ssh-keygen -t ed25519 -C $mail
 
-echo "Updating the yadm repo origin URL"
+echo "########## Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:konova8/dots.git"
 
-echo -e "Remeber to do these other things:\n\
-- Change this setting in about:config in firefox\n\
-  - toolkit.tabbox.switchByScrolling = true\n\
--  Import settings for YT browser extension\n\
-- Check if ibus is working (split keyboard)\n\
+echo -e "########## Remeber to do these other things:\n \
+- Change this setting in about:config in firefox\n \
+  - toolkit.tabbox.switchByScrolling = true\n \
+- Add SSH key to GitHub\n \
+- Import settings for YT browser extension\n \
+- Check if ibus is working (split keyboard)\n \
 - Configure Thunderbird"
