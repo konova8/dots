@@ -227,6 +227,12 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 
+### Alt+hjkl as arrow keys
+bindsym Alt+h exec wtype -k 'Left'
+bindsym Alt+j exec wtype -k 'Down'
+bindsym Alt+k exec wtype -k 'Up'
+bindsym Alt+l exec wtype -k 'Right'
+
 ### Screenshot tool
 bindsym $mod+Shift+s exec flameshot gui
 bindsym Print exec flameshot gui
