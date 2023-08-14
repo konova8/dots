@@ -8,13 +8,13 @@ then
   res+='  |  '
 fi
 
-aur=$(yay -Qum | wc -l)
-if [[ $aur -gt $zero ]]
-then
-  res+='AUR: '
-  res+=$aur
-  res+='  |  '
-fi
+# aur=$(yay -Qum | wc -l)
+# if [[ $aur -gt $zero ]]
+# then
+#   res+='AUR: '
+#   res+=$aur
+#   res+='  |  '
+# fi
 
 backlight_percentage='Backlight: '
 backlight_percentage+=$(brightnessctl | grep 'Current brightness' | awk '{print $4}' | cut -d ')' -f 1 | cut -c2-)
