@@ -29,7 +29,7 @@ sudo mkdir -p /etc/dconf/db/gdm.d
 sudo ln -s ~/other-dots/06-tap-to-click /etc/dconf/db/gdm.d/
 
 echo "########## Use nvidia with sway + specific env variables"
-sudo ln -s ~/other-dots/sway-nvidia.* /usr/share/wayland-sessions/
+sudo ln ~/other-dots/sway-nvidia.* /usr/share/wayland-sessions/
 
 echo "########## Generating SSH keys with ed25519 algorithm"
 echo "Which mail are you using?"
@@ -39,9 +39,13 @@ ssh-keygen -t ed25519 -C $mail
 echo "########## Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:konova8/dots.git"
 
+echo "########## Activate Daemon for firefox profile on RAM"
+sudo systemctl --user enable psd.service
+
 echo -e "########## Remeber to do these other things:\n \
 - Change this setting in about:config in firefox\n \
   - toolkit.tabbox.switchByScrolling = true\n \
+  - browser.cache.disk.parent_directory = /run/user/1000/firefox\n \
 - Add SSH key to GitHub\n \
 - Import settings for YT browser extension\n \
 - Check if ibus is working (split keyboard)\n \
