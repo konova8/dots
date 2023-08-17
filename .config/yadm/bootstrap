@@ -8,14 +8,15 @@ echo "########## Update system"
 sudo pacman -Syu --noconfirm
 
 echo "########## Installing packages with pacman"
-sudo pacman -S --noconfirm --needed wget git firefox thunderbird code \
+sudo pacman -S --noconfirm --needed wget git firefox thunderbird \
   alacritty highlight ranger neovim lazygit sway swaybg mpv grim swaylock \
   swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr \
   xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard \
   wtype
 
 echo "########## Installing packages from AUR with yay"
-yay -S --noconfirm --needed code-marketplace rofi-lbonn-wayland
+yay -S --noconfirm --needed code-marketplace rofi-lbonn-wayland \
+  visual-studio-code-bin
 
 echo "########## Setting dark theme system wide"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
