@@ -21,7 +21,7 @@ then
     alacritty highlight ranger neovim lazygit sway swaybg mpv grim swaylock \
     swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr \
     xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard \
-    wtype profile-sync-daemon
+    wtype profile-sync-daemon xournalpp gnome-shell-extensions
 fi
 
 echo "########## Installing packages from AUR with yay"
