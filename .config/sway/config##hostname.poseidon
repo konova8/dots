@@ -7,6 +7,9 @@ output * bg /home/sc/wallpapers/eclipse.jpg fill
 output eDP-1 pos 0 0
 output HDMI-A-1 pos 1920 -1080
 
+bindswitch lid:on output eDP-1 disable
+bindswitch lid:off output eDP-1 enable
+
 smart_borders on
 
 set $bg 		        #d65d0e
@@ -247,5 +250,8 @@ bindsym Print exec flameshot gui
 # For using the Clipboard
 exec_always wl-paste -t text --watch clipman store --no-persist
 exec_always flameshot
+# Keyboard specific commands
+input type:keyboard xkb_numlock enabled
+input * xkb_options compose:ralt
 
 include /etc/sway/config.d/*
