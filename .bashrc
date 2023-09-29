@@ -20,4 +20,6 @@ alias vi='nvim'
 alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias kubectl="minikube kubectl --"
 
+alias latexdebuglive='latexmk -pdf -pvc'
+
 PS1='$(if [[ $? == 0 ]]; then echo "\[\e[32m\]:)"; else echo "\[\e[31m\]:("; fi) \w\n\[\e[0m\][\u@\H]$ '
