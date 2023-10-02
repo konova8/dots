@@ -22,7 +22,8 @@ then
     swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr \
     xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard \
     wtype profile-sync-daemon xournalpp gnome-shell-extensions \
-    gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst
+    gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst \
+    nm-connection-editor
 fi
 
 echo "########## Installing Latex related packages"
