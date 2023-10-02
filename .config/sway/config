@@ -1,14 +1,22 @@
 ### Appereance
 set $font pango:FontAwesome 10
 font $font
-output * bg /home/sc/wallpapers/eclipse.jpg fill
+set $background-path /home/sc/wallpapers/eclipse.jpg
+output * bg $background-path fill
+
+### Variables
+set $mod Mod4
 
 ### Multi Monitor Setup
 output eDP-1 pos 0 1080
 output HDMI-A-1 pos 1920 0
 
-bindswitch lid:on output eDP-1 disable
-bindswitch lid:off output eDP-1 enable
+# Clamshell Mode
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+bindsym $mod+Ctrl+Shift+s output $laptop toggle
 
 smart_borders on
 
@@ -28,10 +36,6 @@ client.urgent           $bg-urgent    $bg-urgent   $text          $bar $bar
 
 default_border pixel 1
 default_floating_border pixel 1
-
-### Variables
-
-set $mod Mod4
 
 ### Status Bar:
 bar {
@@ -64,14 +68,21 @@ set $term foot
 # opened on the original workspace that the command was run on.
 set $menu rofi -combi-modi drun -theme gruvbox-dark-hard -font $font -show combi | xargs swaymsg exec --
 
+### Automatic Idle configuration
 ### Idle configuration
-exec_always swayidle -w \
-         timeout 598 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
+exec swayidle -w \
+    timeout 590 'swaylock -f -C ~/.config/swaylock/config' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -C ~/.config/swaylock/config'
+
+# This will lock your screen after 590 seconds of inactivity, then turn off
+# your displays after another 600 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+
+## Lock Screen
+bindsym $mod+Escape exec ~/.config/sway/lockman.sh
+bindsym $mod+Ctrl+Shift+l exec ~/.config/sway/lockman.sh
 
 ### Input configuration
 input "1267:12717:MSFT0002:00_04F3:31AD_Touchpad" {
@@ -230,6 +241,8 @@ mode "resize" {
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym Space mode "default"
+    bindsym Tab mode "default"
 }
 bindsym $mod+z mode "resize"
 
@@ -254,4 +267,8 @@ exec_always flameshot
 input type:keyboard xkb_numlock enabled
 input * xkb_options compose:ralt
 
-include /etc/sway/config.d/*
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+for_window [app_id="nm-connection-editor"] floating enable
+
+# include /etc/sway/config.d/*
