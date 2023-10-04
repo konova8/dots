@@ -1,41 +1,30 @@
+#!/bin/bash
 res=''
 
-updates=$(checkupdates | wc -l)
-if [[ $updates -gt $zero ]]
-then
-  res+='Updates: '
-  res+=$updates
-  res+='  |  '
-fi
-
-# aur=$(yay -Qum | wc -l)
-# if [[ $aur -gt $zero ]]
-# then
-#   res+='AUR: '
-#   res+=$aur
-#   res+='  |  '
-# fi
-
-backlight_percentage='Backlight: '
+backlight_percentage='BACKLIGHT: '
 backlight_percentage+=$(brightnessctl | grep 'Current brightness' | awk '{print $4}' | cut -d ')' -f 1 | cut -c2-)
 res+=$backlight_percentage
 res+='  |  '
 
 name_connection=$(nmcli -t c show --active | grep wlan | awk -F: '{ print $1 }')
+res_nc='NETWORK: '
 if [[ -z $name_connection ]]
 then
-  name_connection='Offline'
+  res_nc+='Offline'
+else
+  res_nc+=$name_connection
 fi
-res+=$name_connection
+res+=$res_nc
 res+='  |  '
 
-volume_level='Vol: '$(pamixer --get-volume-human)
+volume_level='VOLUME: '$(pamixer --get-volume-human)
 res+=$volume_level
 res+='  |  '
 
 battery_status=$(cat /sys/class/power_supply/BAT1/status)
 battery_percentage=$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{print $2}')
 battery=$battery_status' '$battery_percentage
+res+='BATTERY: '
 res+=$battery
 res+='  |  '
 

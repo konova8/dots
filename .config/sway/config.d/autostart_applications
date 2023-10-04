@@ -1,0 +1,14 @@
+### Autostart
+# For using the Clipboard
+exec_always wl-paste -t text --watch clipman store --no-persist
+# Screenshot app
+exec_always flameshot
+
+### GTK3 applications take a long time to start ###
+# EOS version
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# Custom version
+# exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK

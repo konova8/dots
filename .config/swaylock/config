@@ -1,0 +1,4 @@
+indicator-caps-lock
+image=$HOME/wallpapers/eclipse.jpg
+scaling=fill
+ignore-empty-password
