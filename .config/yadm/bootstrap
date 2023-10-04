@@ -49,7 +49,7 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   yay -S --noconfirm --needed code-marketplace rofi-lbonn-wayland \
-    visual-studio-code-bin zotero-bin
+    visual-studio-code-bin zotero-bin rmtrash
 fi
 
 echo "########## Setting dark theme system wide"

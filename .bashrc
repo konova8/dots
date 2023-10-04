@@ -17,6 +17,8 @@ alias grep='grep --colour=auto'
 alias update="sudo pacman -Syu && yay -Sua"
 alias lzg='lazygit'
 alias vi='nvim'
+alias rm='rmtrash'
+alias rmdir='rmdirtrash'
 alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias latexdebuglive='latexmk -pdf -pvc'
 
