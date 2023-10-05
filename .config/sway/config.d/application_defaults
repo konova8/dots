@@ -24,5 +24,4 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 for_window [app_id="Chromium"] inhibit_idle fullscreen
 
 # Flameshot
-# for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen enable global, move relative position 0 0

@@ -157,6 +157,16 @@ mode "resize" {
 }
 bindsym $mod+z mode "resize"
 
+### Faster resizing windows
+bindsym $mod+Ctrl+$left mode "resize"; resize shrink width 30px; mode "default"
+bindsym $mod+Ctrl+$down mode "resize"; resize grow height 30px; mode "default"
+bindsym $mod+Ctrl+$up mode "resize"; resize shrink height 30px; mode "default"
+bindsym $mod+Ctrl+$right mode "resize"; resize grow width 30px; mode "default"
+bindsym $mod+Ctrl+Left mode "resize"; resize shrink width 30px; mode "default"
+bindsym $mod+Ctrl+Down mode "resize"; resize grow height 30px; mode "default"
+bindsym $mod+Ctrl+Up mode "resize"; resize shrink height 30px; mode "default"
+bindsym $mod+Ctrl+Right mode "resize"; resize grow width 30px; mode "default"
+
 ### Special Keys
 bindsym --locked XF86AudioRaiseVolume exec pamixer -ui 2
 bindsym --locked XF86AudioLowerVolume exec pamixer -ud 2
@@ -167,7 +177,9 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 
 ### Screenshot tool
-bindsym Print exec flameshot gui
+# bindsym Print exec flameshot gui
+bindsym Print exec grim -g "$(slurp)" - | swappy -f -
+bindsym Shift+Print exec grim - | swappy -f -
 
 ### Toggle off laptop screen
 bindsym --locked $mod+Ctrl+Shift+s output $laptop toggle
