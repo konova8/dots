@@ -223,6 +223,9 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
+  svelte = {},
+  texlab = {},
+  bashls = {},
 
   lua_ls = {
     Lua = {
