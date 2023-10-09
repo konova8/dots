@@ -2,12 +2,11 @@
 res=''
 
 sleep 15
-rescheckupdates=$(checkupdates)
+linescheckupdates=$(checkupdates | wc -l)
 
 if [ $? -eq 0 ]; then
-  updates=$(echo $rescheckupdates | wc -l)
   res+='Updates: '
-  res+=$updates
+  res+=$linescheckupdates
   res+=$'\n\n'
 
   aur=$(yay -Qum | wc -l)

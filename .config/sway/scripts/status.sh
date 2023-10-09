@@ -28,6 +28,17 @@ res+='BATTERY: '
 res+=$battery
 res+='  |  '
 
+if [[ ${battery_percentage%?} -lt 10 ]]
+then
+  notify-send -u critical "LOW BATTERY ${battery_percentage%?}"
+elif [[ ${battery_percentage%?} -lt 15 ]]
+then
+  notify-send "${battery_percentage%?}"
+elif [[ ${battery_percentage%?} -lt 20 ]]
+then
+  notify-send -u low "${battery_percentage%?}"
+fi
+
 date_formatted=$(date "+%a %F %H:%M:%S")
 res+=$date_formatted
 
