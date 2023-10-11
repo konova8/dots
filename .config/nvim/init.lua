@@ -78,6 +78,19 @@ vim.o.completeopt = 'menuone,noselect'
 -- Terminal gui Colors
 vim.o.termguicolors = true
 
+-- Create a local command `:ToggleWrap` local
+vim.api.nvim_create_user_command('ToggleWrap', function(_)
+  if vim.o.wrap then
+    vim.o.wrap = false
+    vim.o.linebreak = false
+  else
+    vim.o.wrap = true
+    vim.o.linebreak = true
+  end
+end, { desc = 'Toggle Wrap with nolinebreak' })
+
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
