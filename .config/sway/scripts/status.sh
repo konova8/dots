@@ -17,6 +17,15 @@ fi
 res+=$res_nc
 res+='  |  '
 
+mic_status=$(pamixer --default-source --get-mute)
+if [[ $mic_status == 'false' ]]
+then
+  res+='MIC: ON'
+else
+  res+='MIC: OFF'
+fi
+res+='  |  '
+
 volume_level='VOLUME: '$(pamixer --get-volume-human)
 res+=$volume_level
 res+='  |  '
