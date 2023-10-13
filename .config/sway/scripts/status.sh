@@ -48,6 +48,9 @@ then
   notify-send -u low "${battery_percentage%?}"
 fi
 
+res+=$(awk '{print $1*10^-6 " W"}' /sys/class/power_supply/BAT1/power_now)
+res+='  |  '
+
 date_formatted=$(date "+%a %F %H:%M:%S")
 res+=$date_formatted
 
