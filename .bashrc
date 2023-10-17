@@ -10,9 +10,6 @@
 ### Gruvbox Colors
 TEXT_RED="$(tput setaf 1)"
 TEXT_GREEN="$(tput setaf 2)"
-TEXT_LIGHTGRAY="$(tput setaf 7)"
-TEXT_GRAY="$(tput setaf 8)"
-TEXT_YELLOW="$(tput setaf 11)"
 
 ### Make completion case-insensitive ###
 bind -s 'set completion-ignore-case on'
