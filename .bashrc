@@ -7,8 +7,21 @@
 
 #------------------------------------------------------------
 
+### Gruvbox Colors
+TEXT_RED="$(tput setaf 1)"
+TEXT_GREEN="$(tput setaf 2)"
+TEXT_LIGHTGRAY="$(tput setaf 7)"
+TEXT_GRAY="$(tput setaf 8)"
+TEXT_YELLOW="$(tput setaf 11)"
+
 ### Make completion case-insensitive ###
 bind -s 'set completion-ignore-case on'
+
+### Vi mode for shell
+bind 'set show-mode-in-prompt on'
+bind 'set editing-mode vi'
+bind "set vi-cmd-mode-string \"${TEXT_GRAY}(CMD)\""
+bind "set vi-ins-mode-string \"${TEXT_YELLOW}(INS)\""
 
 ### Aliases ###
 alias ls='ls --color=auto'
@@ -22,4 +35,4 @@ alias rmdir='rmdirtrash'
 alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias latexdebuglive='latexmk -pdf -pvc'
 
-PS1='$(if [[ $? == 0 ]]; then echo "\[\e[32m\]:)"; else echo "\[\e[31m\]:("; fi) \w\n\[\e[0m\][\u@\H]$ '
+PS1='$(if [[ $? == 0 ]]; then echo "\[${TEXT_GREEN}\]:)"; else echo "\[${TEXT_RED}\]:("; fi) \w\n\[\e[0m\][\u@\H]$ '
