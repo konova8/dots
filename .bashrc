@@ -14,11 +14,11 @@ TEXT_GREEN="$(tput setaf 2)"
 ### Make completion case-insensitive ###
 bind -s 'set completion-ignore-case on'
 
-### Vi mode for shell
-bind 'set show-mode-in-prompt on'
-bind 'set editing-mode vi'
-bind "set vi-cmd-mode-string \"${TEXT_GRAY}(CMD)\""
-bind "set vi-ins-mode-string \"${TEXT_YELLOW}(INS)\""
+### FZF shortcuts
+if [ -x "$(command -v fzf)"  ]
+then
+  source /usr/share/fzf/key-bindings.bash
+fi
 
 ### Aliases ###
 alias ls='ls --color=auto'
