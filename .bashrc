@@ -33,3 +33,16 @@ alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias latexdebuglive='latexmk -pdf -pvc'
 
 PS1='$(if [[ $? == 0 ]]; then echo "\[${TEXT_GREEN}\]:)"; else echo "\[${TEXT_RED}\]:("; fi) \w\n\[\e[0m\][\u@\H]$ '
+
+function cd() {
+    if [ $# -eq 0 ] ; then               # no arguments specified
+        builtin cd
+    elif [[ -f "$1" && -L "$1" ]] ; then # file, which is a link
+       cd "$(readlink $1)"               # recursive
+    elif [ -f $1 ] ; then                # argument is a file
+       builtin cd "$(dirname $1)"
+    else                                 # argument is not a file
+       builtin cd "$@"
+    fi
+}
+
