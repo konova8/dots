@@ -78,6 +78,11 @@ vim.o.completeopt = 'menuone,noselect'
 -- Terminal gui Colors
 vim.o.termguicolors = true
 
+-- [[ Theme options ]]
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
+
+
 -- Create a local command `:ToggleWrap` local
 vim.api.nvim_create_user_command('ToggleWrap', function(_)
   if vim.o.wrap then
@@ -178,6 +183,7 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 -- TODO return to original keymap set
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Configure LSP ]]
 -- TODO capire se servono davvero tutte queste shortcut
