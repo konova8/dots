@@ -46,6 +46,12 @@ then
 elif [[ ${battery_percentage%?} -lt 20 ]]
 then
   notify-send -u low "${battery_percentage%?}"
+elif [[ ${battery_percentage%?} -lt 25 ]]
+then
+  notify-send -u low "${battery_percentage%?}"
+elif [[ ${battery_percentage%?} -lt 30 ]]
+then
+  notify-send -u low "${battery_percentage%?}"
 fi
 
 res+=$(awk '{print $1*10^-6 " W"}' /sys/class/power_supply/BAT1/power_now)
