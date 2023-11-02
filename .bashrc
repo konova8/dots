@@ -7,6 +7,9 @@
 
 #------------------------------------------------------------
 
+### Environment Variables
+export GOPATH=/home/sc/go
+
 ### Gruvbox Colors
 TEXT_RED="$(tput setaf 1)"
 TEXT_GREEN="$(tput setaf 2)"
