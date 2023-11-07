@@ -13,6 +13,8 @@ export GOPATH=/home/sc/go
 ### Gruvbox Colors
 TEXT_RED="$(tput setaf 1)"
 TEXT_GREEN="$(tput setaf 2)"
+TEXT_YELLOW="$(tput setaf 3)"
+TEXT_WHITE="$(tput setaf 15)"
 
 ### Make completion case-insensitive ###
 bind -s 'set completion-ignore-case on'
@@ -35,7 +37,11 @@ alias rmdir='rmdirtrash'
 alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias latexdebuglive='latexmk -pdf -pvc'
 
-PS1='$(if [[ $? == 0 ]]; then echo "\[${TEXT_GREEN}\]:)"; else echo "\[${TEXT_RED}\]:("; fi) \w\n\[\e[0m\][\u@\H]$ '
+git_current_branch() {
+    git branch 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/ (\1)/"
+}
+
+PS1='$(if [[ $? == 0 ]]; then echo "\[${TEXT_GREEN}\]:)"; else echo "\[${TEXT_RED}\]:("; fi) \w\n\[${TEXT_WHITE}\][\u@\H\[${TEXT_YELLOW}\]$(git_current_branch)\[${TEXT_WHITE}\]]$ '
 
 function cd() {
     if [ $# -eq 0 ] ; then               # no arguments specified
