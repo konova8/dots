@@ -1,0 +1,23 @@
+client.focused          $bg           $bg          $text          $bg $bg
+client.unfocused        $bg-inactive  $bg-inactive $text-inactive $bar $bar
+client.focused_inactive $bg-inactive  $bg-inactive $text-inactive $bar $bar
+client.urgent           $bg-urgent    $bg-urgent   $text          $bar $bar
+
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command ( while $script-path/status.sh; do sleep 1; done )
+    colors {
+    	font $font
+      statusline $statusline
+      background $bar
+	    # border background text
+	    focused_workspace $text-inactive $bg $text
+	    active_workspace $text-inactive $bg $text
+	    inactive_workspace $text-inactive $bg-inactive $text-inactive
+    }
+}
+
+bindsym $mod+b bar mode toggle
