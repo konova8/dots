@@ -2,4 +2,8 @@
 # For using the Clipboard
 exec_always wl-paste -t text --watch clipman store --no-persist
 # Screenshot app
-exec_always flameshot
+# exec_always flameshot
+
+# Autostart applications
+exec telegram-desktop
+exec firefox
