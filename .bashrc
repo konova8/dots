@@ -43,7 +43,7 @@ git_current_branch() {
 
 PS1='$(if [[ $? == 0 ]]; then echo "\[${TEXT_GREEN}\]:)"; else echo "\[${TEXT_RED}\]:("; fi) \w\n\[${TEXT_WHITE}\][\u@\H\[${TEXT_YELLOW}\]$(git_current_branch)\[${TEXT_WHITE}\]]$ '
 
-function cd() {
+function smarter_cd() {
     if [ $# -eq 0 ] ; then               # no arguments specified
         builtin cd
     elif [[ -f "$1" && -L "$1" ]] ; then # file, which is a link
