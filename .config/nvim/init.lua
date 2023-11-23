@@ -119,6 +119,12 @@ vim.keymap.set('n', '<leader>p', '"+p')
 vim.keymap.set('v', '<leader>p', '"+p')
 vim.keymap.set('n', '<leader>Y', '"+Y')
 
+-- Terminal with Ctrl+`
+vim.keymap.set('n', '<C-`>', ':tabnew | startinsert | term<Enter>')
+
+-- Terminal ESC
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+
 -- NEVER PRESS Q AGAIN
 vim.keymap.set('n', 'Q', '<nop>')
 vim.keymap.set('n', '<leader>f', function()
