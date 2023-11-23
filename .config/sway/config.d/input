@@ -16,3 +16,5 @@ bindgesture swipe:left workspace next
 input type:keyboard xkb_numlock enabled
 input * xkb_options compose:ralt
 
+# Hide cursor after 5s
+seat * hide_cursor 5000
