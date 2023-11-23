@@ -5,7 +5,7 @@ set $down j
 set $up k
 set $right l
 
-set $font pango:FontAwesome 10
+set $font Source Code Pro 11
 
 set $background-path $HOME/wallpapers/eclipse.jpg
 set $sway-path $HOME/.config/sway
@@ -15,13 +15,8 @@ set $term foot
 
 # Note: pass the final command to swaymsg so that the resulting window can be
 # opened on the original workspace that the command was run on.
-set $menu rofi -combi-modi drun -theme gruvbox-dark-hard -font $font -show combi | xargs swaymsg exec --
-set $power-menu rofi -theme gruvbox-dark-hard \
-  -font $font \
-  -show powermenu \
-  -modi powermenu:'~/.config/sway/scripts/rofi-power-menu.sh --no-symbols' \
-  -theme-str 'window {width: 18em;} listview {lines: 6;}' \
-  | xargs swaymsg exec --
+set $menu rofi -combi-modi drun -theme gruvbox-dark-hard -font "$font" -show combi | xargs swaymsg exec --
+set $power-menu rofi -theme gruvbox-dark-hard -font "$font" -show powermenu -modi powermenu:'~/.config/sway/scripts/rofi-power-menu.sh --no-symbols' -theme-str 'window {width: 18em;} listview {lines: 6;}' | xargs swaymsg exec --
 
 set $laptop eDP-1
 
