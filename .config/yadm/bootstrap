@@ -17,7 +17,7 @@ read -p "Are you sure? [y/n]" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swaylock swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar libsixel ripgrep
+  sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar libsixel ripgrep
 fi
 
 echo "########## Installing Python related packages"
@@ -64,7 +64,7 @@ read -p "Are you sure? [y/n]" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  yay -S --noconfirm --needed code-marketplace rofi-lbonn-wayland visual-studio-code-bin zotero-bin rmtrash ranger-git
+  yay -S --noconfirm --needed code-marketplace rofi-lbonn-wayland visual-studio-code-bin zotero-bin rmtrash ranger-git swaylock-effects
 fi
 
 echo "########## Setting dark theme system wide"

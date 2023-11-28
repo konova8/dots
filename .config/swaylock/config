@@ -1,4 +1,11 @@
 indicator-caps-lock
-image=$HOME/wallpapers/eclipse.jpg
-scaling=fill
 ignore-empty-password
+
+clock
+
+indicator
+
+screenshots
+effect-blur=7x5
+
+grace=1
