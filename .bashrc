@@ -33,6 +33,7 @@ alias update="sudo pacman -Syu && yay -Sua"
 alias lzg='lazygit'
 alias lzgyadm='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 alias vi='nvim'
+alias vitmp='nvim $(mktemp)'
 alias rm='rmtrash'
 alias rmdir='rmdirtrash'
 alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
