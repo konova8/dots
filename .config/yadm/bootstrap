@@ -90,7 +90,7 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo mkdir -p /etc/dconf/db/gdm.d
-  sudo ln -s ~/other-dots/06-tap-to-click /etc/dconf/db/gdm.d/
+  sudo ln $HOME/other-dots/06-tap-to-click /etc/dconf/db/gdm.d/
 fi
 
 echo "########## Use nvidia with sway + specific env variables"
@@ -98,7 +98,7 @@ read -p "Are you sure? [y/n]" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  sudo ln ~/other-dots/sway-nvidia.* /usr/share/wayland-sessions/
+  sudo ln $HOME/other-dots/sway-nvidia.* /usr/share/wayland-sessions/
 fi
 
 echo "########## Increment parallel download count"
