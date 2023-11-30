@@ -20,11 +20,11 @@ set $power-menu rofi -theme gruvbox-dark-hard -font "$font" -show powermenu -mod
 
 set $laptop eDP-1
 
-set $bg 		        #d65d0e
-set $bg-inactive	  #323232
-set $bg-urgent		  #000000
-set $text		        #eeeeec
-set $text-inactive	#babdb6
+set $bg             #d65d0e
+set $bg-inactive    #323232
+set $bg-urgent      #000000
+set $text           #eeeeec
+set $text-inactive  #babdb6
 
 set $bar            #323232
 set $statusline     #e0e0e0
