@@ -168,8 +168,8 @@ bindsym $mod+Ctrl+Up mode "resize"; resize shrink height 30px; mode "default"
 bindsym $mod+Ctrl+Right mode "resize"; resize grow width 30px; mode "default"
 
 ### Special Keys
-bindsym --locked XF86AudioRaiseVolume exec pamixer -ui 2
-bindsym --locked XF86AudioLowerVolume exec pamixer -ud 2
+bindsym --locked XF86AudioRaiseVolume exec pamixer -ui 5
+bindsym --locked XF86AudioLowerVolume exec pamixer -ud 5
 bindsym --locked XF86AudioMute exec pamixer -t
 bindsym --locked XF86AudioMicMute exec pamixer --default-source -t
 
