@@ -8,7 +8,8 @@
 #------------------------------------------------------------
 
 ### Environment Variables
-export GOPATH=/home/sc/go
+# export GOPATH=/home/sc/go
+export GOPATH=/home/sc/.go
 
 ### Gruvbox Colors
 TEXT_RED="$(tput setaf 1)"
