@@ -1,2 +1,2 @@
-output eDP-1 pos 0 1080
-output HDMI-A-1 pos 1920 0
+output eDP-1    pos 0       540
+output HDMI-A-1 pos 1920    0
