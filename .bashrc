@@ -26,6 +26,61 @@ then
   source /usr/share/fzf/key-bindings.bash
 fi
 
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow \
+    --exclude .cache \
+    --exclude .docker \
+    --exclude .gnupg \
+    --exclude .go \
+    --exclude .ipython \
+    --exclude .keras \
+    --exclude .kube \
+    --exclude .local \
+    --exclude .minikube \
+    --exclude .mozilla \
+    --exclude .npm \
+    --exclude .nv \
+    --exclude .parallel \
+    --exclude .pki \
+    --exclude .ssh \
+    --exclude .thunderbird \
+    --exclude .vscode \
+    --exclude .zotero \
+    --exclude Zotero \
+    --exclude venv \
+    --exclude go"
+ 
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow \
+    --exclude .cache \
+    --exclude .docker \
+    --exclude .gnupg \
+    --exclude .go \
+    --exclude .ipython \
+    --exclude .keras \
+    --exclude .kube \
+    --exclude .local \
+    --exclude .minikube \
+    --exclude .mozilla \
+    --exclude .npm \
+    --exclude .nv \
+    --exclude .parallel \
+    --exclude .pki \
+    --exclude .ssh \
+    --exclude .thunderbird \
+    --exclude .vscode \
+    --exclude .zotero \
+    --exclude Zotero \
+    --exclude venv \
+    --exclude go"
+
+# Preview file content using bat (https://github.com/sharkdp/bat) and bind ctrl-/ for switching layout
+export FZF_CTRL_T_OPTS="
+    --preview 'bat -n --color=always {}'
+    --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
 ### Aliases ###
 alias ls='ls --color=auto'
 alias ll='ls -laF'

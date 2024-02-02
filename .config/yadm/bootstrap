@@ -17,7 +17,7 @@ read -p "Are you sure? [y/n]" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar libsixel ripgrep vim ttf-sourcecodepro-nerd tree
+  sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar libsixel ripgrep vim ttf-sourcecodepro-nerd tree bat fd
 fi
 
 echo "########## Installing Python related packages (NOT USEFUL IF YOU USE VIRTUAL ENVIRONMENTS"
