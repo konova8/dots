@@ -101,6 +101,15 @@ then
   sudo ln $HOME/other-dots/sway-nvidia.* /usr/share/wayland-sessions/
 fi
 
+echo "########## Add reset-usb command for reloading usb"
+read -p "Are you sure? [y/n]" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  sudo chmod 755 $HOME/other-dots/reset-usb.sh
+  sudo ln $HOME/other-dots/reset-usb.sh /usr/local/bin/reset-usb
+fi
+
 echo "########## Update password attempt number and unlock_time"
 read -p "Are you sure? [y/n]" -n 1 -r
 echo    # (optional) move to a new line
