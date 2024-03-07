@@ -4,7 +4,13 @@ return
     {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        keys = {
+            { '<leader>ff', function() require('telescope.builtin').find_files() end,                desc = '[ff] Find Files' },
+            { '<leader>lg', function() require('telescope.builtin').live_grep() end,                 desc = '[lg] Find Grep' },
+            { '<leader>gf', function() require('telescope.builtin').git_files() end,                 desc = '[gf] If in a git directory find git files' },
+            { '<leader>/',  function() require('telescope.builtin').current_buffer_fuzzy_find() end, desc = '[/] Fuzzily search in current buffer' },
+        },
     },
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -14,10 +20,10 @@ return
         'nvim-telescope/telescope-fzf-native.nvim',
         -- NOTE: If you are having trouble with this installation,
         --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-            return vim.fn.executable 'make' == 1
-        end,
+        -- build = 'make',
+        -- cond = function()
+        --     return vim.fn.executable 'make' == 1
+        -- end,
     },
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
@@ -32,22 +38,10 @@ return
                 },
             },
         }
-
         -- Enable telescope fzf native, if installed
         pcall(require('telescope').load_extension, 'fzf')
-
+    end,
+    init = function()
         -- See `:help telescope.builtin`
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[fb] Find Files' })
-        vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[fg] Find Grep' })
-        vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers,
-            { desc = '[fb] Find existing Buffers' })
-        vim.keymap.set('n', '<leader>/', function()
-            -- You can pass additional configuration to telescope to change theme, layout, etc.
-            require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-                winblend = 10,
-                previewer = false,
-            })
-        end, { desc = '[/] Fuzzily search in current buffer' })
     end
 }

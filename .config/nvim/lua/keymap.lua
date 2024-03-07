@@ -31,11 +31,11 @@ vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"+Y')
 vim.keymap.set('n', '<leader>f', function()
     vim.lsp.buf.format()
     print('File formatted with vim.lsp.buf.format()')
-end)
+end, { desc = 'Format this file' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostics list' })
 
 -- Terminal Shortcuts
 vim.keymap.set('n', '<C-`>', ':tabnew | startinsert | term<cr>')
