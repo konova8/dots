@@ -110,6 +110,15 @@ then
   sudo ln $HOME/other-dots/reset-usb.sh /usr/local/bin/reset-usb
 fi
 
+echo "########## Set firefox as default application for html and pdf"
+read -p "Are you sure? [y/n]" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  xdg-mime default firefox.desktop text/html
+  xdg-mime default firefox.desktop application/pdf
+fi
+
 echo "########## Update password attempt number and unlock_time"
 read -p "Are you sure? [y/n]" -n 1 -r
 echo    # (optional) move to a new line
@@ -145,6 +154,14 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sudo systemctl --user enable psd.service
+fi
+
+echo "########## Install cybersecurity tools"
+read -p "Are you sure? [y/n]" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  yay -S --noconfirm --needed ghidra ghidra-desktop strace ltrace burpsuite
 fi
 
 echo -e "########## Remeber to do these other things:\n \
