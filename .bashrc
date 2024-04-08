@@ -95,6 +95,7 @@ alias rmdir='rmdirtrash'
 alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias latexdebuglive='latexmk -pdf -pvc'
 alias mv='mv -i'
+alias c='wl-copy'
 
 git_current_branch() {
     git branch 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/ (\1)/"
