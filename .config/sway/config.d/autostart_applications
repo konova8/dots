@@ -7,3 +7,4 @@ exec_always wl-paste -t text --watch clipman store --no-persist
 # Autostart applications
 exec telegram-desktop
 exec firefox
+exec nm-applet
