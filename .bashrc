@@ -94,6 +94,7 @@ alias rm='rmtrash'
 alias rmdir='rmdirtrash'
 alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias latexdebuglive='latexmk -pdf -pvc'
+alias cp='cp -i'
 alias mv='mv -i'
 alias c='wl-copy'
 
