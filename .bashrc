@@ -96,6 +96,7 @@ alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
 alias cp='cp -i'
 alias mv='mv -i'
 alias c='wl-copy'
+alias r='. ranger'
 
 git_current_branch() {
     git branch 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/ (\1)/"
