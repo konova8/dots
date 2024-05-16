@@ -180,4 +180,5 @@ echo -e "########## Remeber to do these other things:\n \
 - Add SSH key to GitHub\n \
 - Import settings for YT browser extension\n \
 - Check if ibus is working (split keyboard)\n \
+- Configure SyncThing\n \
 - Configure Thunderbird"
