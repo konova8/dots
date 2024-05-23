@@ -22,10 +22,3 @@ vim.opt.rtp:prepend(lazypath)
 -- This source all lua files inside plugins folder inside lua folder
 -- So you don't have to require everything by hand
 require("lazy").setup("plugins")
-
--- [[ Lua files ]]
-require('vim-options')
-require('custom-commands')
-require('keymap')
-require('highlight-yank')
-require('autoformat')
