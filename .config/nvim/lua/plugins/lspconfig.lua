@@ -74,6 +74,7 @@ return
             svelte = {},
             texlab = {},
             bashls = {},
+            html = {},
 
             lua_ls = {
                 Lua = {
