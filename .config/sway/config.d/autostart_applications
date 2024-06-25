@@ -9,3 +9,6 @@ exec telegram-desktop
 exec firefox
 exec nm-applet
 exec cbatticon --update-interval 30 --low-level 30 --critical-level 15
+
+# Permanently delete all files in the trash which are older than 10 days:
+exec trash-empty 14
