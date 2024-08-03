@@ -65,23 +65,75 @@ return
         -- Enable the following language servers
         -- Add any additional override configuration in the following tables
         -- They will be passed to the `settings` field of the server config
+
+        -- [[ Word list for ltex-ls ]]
+        local words = {
+            'Saverio',
+            'Giallorenzo',
+            'Jacopo',
+            'Kubernetes',
+            'OrTools',
+            'Z3',
+            'incrementality',
+            'Satisfiability',
+            'MiniZinc',
+            'cpu',
+            'sub-optimal',
+            'Micro services',
+            'Micro',
+            'services',
+            'de-facto',
+            'Jolie',
+            'HyperVisor',
+            'Matita',
+            'ssd-disk',
+            'schedulable',
+            'kubelet',
+            'kube-proxy',
+            'kube-scheduler',
+            'Autoscalability',
+            'EAs',
+            'PreEnqueue',
+            'EnqueueExtension',
+            'QueueingHint',
+            'QueueSort',
+            'PreFilter',
+            'PostFilter',
+            'PreScore',
+            'NormalizeScore',
+            'PreBind',
+            'PostBind',
+            'schedulerName',
+            'MostAllocated',
+            'RequestedToCapacityRatio',
+            'NodeResourcesFit',
+            'Unschedulable',
+            'Unreserve',
+            'Schedulable',
+        }
+
+        -- [[ Servers to install by default ]]
         local servers = {
+            bashls = {},
             clangd = {},
             gopls = {},
-            pyright = {},
-            rust_analyzer = {},
-            tsserver = {},
-            svelte = {},
-            texlab = {},
-            bashls = {},
             html = {},
-
+            ltex = {
+                ltex = {
+                    dictionary = {
+                        ['en-US'] = words, }
+                },
+            },
             lua_ls = {
                 Lua = {
-                    workspace = { checkThirdParty = false },
+                    workspace = {
+                        checkThirdParty = false },
                     telemetry = { enable = false },
                 },
             },
+            pyright = {},
+            texlab = {},
+            tsserver = {},
         }
 
         local mason_lspconfig = require 'mason-lspconfig'
