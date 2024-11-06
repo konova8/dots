@@ -1,2 +1,20 @@
+# Only last commands have effect
+
+####################
+# LAPTOP   MONITOR #
+####################
+output eDP-1    pos 0       0
+output HDMI-A-1 pos 1920    0
+
+####################
+# MONITOR   LAPTOP #
+####################
 output eDP-1    pos 1920    0
+output HDMI-A-1 pos 0       0
+
+####################
+#     MONITOR      #
+#     LAPTOP       #
+####################
+output eDP-1    pos 0       1080
 output HDMI-A-1 pos 0       0
