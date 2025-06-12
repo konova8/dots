@@ -107,5 +107,10 @@ cmd zip ${{
     rm -rf $1
 }}
 
-set sixel true
-set previewer '/home/sc/.config/lf/previewer.sh'
+
+${{
+    if [ "$(uname -s)" = Linux ]; then
+        set sixel true
+        set previewer '/home/sc/.config/lf/previewer.sh'
+    fi
+}}
