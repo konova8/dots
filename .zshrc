@@ -6,6 +6,8 @@ alias grep='grep --colour=auto'
 alias lg='lazygit'
 alias lgyadm='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 alias vi='nvim'
+export EDITOR=nvim
+export VISUAL=nvim
 alias vitmp='nvim $(mktemp "/tmp/nvim.tmp.XXXXXXXX")' # MacOS specific
 # alias rm='rmtrash'
 # alias rmdir='rmdirtrash'
@@ -140,3 +142,4 @@ export JAVA_HOME=$(java_home -v 17)
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
