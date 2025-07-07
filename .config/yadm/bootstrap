@@ -4,182 +4,220 @@
 # be run from within $HOME (assuming this is the root of your dotfiles)
 cd "$HOME"
 
-echo "########## Update system"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo pacman -Syu --noconfirm
-fi
-
-echo "########## Installing packages with pacman"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar libsixel ripgrep vim ttf-sourcecodepro-nerd tree bat fd tldr ipcalc nmap pdftk network-manager-applet syncthing cbatticon lf chafa
-fi
-
-echo "########## Installing Python related packages (NOT USEFUL IF YOU USE VIRTUAL ENVIRONMENTS"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo pacman -S --noconfirm --needed python-pip python-ipykernel tk
-fi
-
-echo "########## Installing Latex related packages"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo pacman -S --noconfirm --needed texlive texlive-langitalian
-fi
-
-echo "########## Installing Kubernetes related packages"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo pacman -S --noconfirm --needed minikube kubectl virualbox \
-  virtualbox-host-dkms
-fi
-
-echo "########## Installing power saving stuff"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  pacman -R power-profile-daemon
-  sudo pacman -S --noconfirm --needed tlp
-  yay -S --noconfirm --needed tlpui
-  systemctl enable tlp.service
-  systemctl start tlp.service
-  systemctl mask systemd-rfkill.service
-  systemctl mask systemd-rfkill.socket
-fi
-
-echo "########## Setup autostart for syncthing"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  systemctl --user enable syncthing.service
-  systemctl --user start syncthing.service
-fi
-
-echo "########## Installing packages from AUR with yay"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  yay -S --noconfirm --needed code-marketplace rofi-lbonn-wayland visual-studio-code-bin zotero-bin rmtrash ranger-git swaylock-effects
-fi
-
-echo "########## Setting dark theme system wide"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
-  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-fi
-
-echo "########## Overwrite gdm rules for allowing Wayland"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
-fi
-
-echo "########## Enable tap-to-click in gdm"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo mkdir -p /etc/dconf/db/gdm.d
-  sudo ln $HOME/other-dots/06-tap-to-click /etc/dconf/db/gdm.d/
-fi
-
-echo "########## Use nvidia with sway + specific env variables"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo ln $HOME/other-dots/sway-nvidia.* /usr/share/wayland-sessions/
-fi
-
-echo "########## Add reset-usb command for reloading usb"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo chmod 755 $HOME/other-dots/reset-usb.sh
-  sudo ln $HOME/other-dots/reset-usb.sh /usr/local/bin/reset-usb
-fi
-
-echo "########## Set firefox as default application for html and pdf"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  xdg-mime default firefox.desktop text/html
-  xdg-mime default firefox.desktop application/pdf
-fi
-
-echo "########## Update password attempt number and unlock_time"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo sed -i.bak -e "s/^#\? *deny *= *[[:digit:]]\+ *$/deny = 10/" -e "s/^#\? *unlock_time *= *[[:digit:]]\+ *$/unlock_time = 300/" /etc/security/faillock.conf
-fi
-
-echo "########## Increment parallel download count"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo sed -i.bak "s/ParallelDownloads = [[:digit:]]\+/ParallelDownloads = 10/1" /etc/pacman.conf
-fi
-
-echo "########## Generating SSH keys with ed25519 algorithm"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  echo "Which mail are you using?"
-  read -p 'Mail: ' mail
-  ssh-keygen -t ed25519 -C $mail
-fi
+system_type=$(uname -s)
 
 echo "########## Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:konova8/dots.git"
 
-echo "########## Activate Daemon for firefox profile on RAM"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  sudo systemctl --user enable psd.service
+if [ "$system_type" = "Darwin" ]; then
+    echo "########## Install Homebrew"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
+    echo "########## Installing packages with HomeBrew"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        brew install angular-cli aws-sam-cli bat coreutils fd fzf glow gnu-getopt \
+            gnu-sed go jq lazygit lf lua luajit luarocks maven neovim node numpy \
+            nvm openjdk prettier python ranger ripgrep tmux trash-cli tree \
+            tree-sitter wget yadm
+        brew install --cask ente-auth firefox@developer-edition ghostty postman \
+            rar spotify ticktick whatsapp
+    fi
+
+    echo -e "########## Remeber to do these other things:\n \
+    - Configure Podman Desktop\n \
+    - Configure Bitwarden\n \
+    - Configure Ente Auth\n \
+    - Configure Rectangle\n \
+    - Configure Karabiner\n \
+    - Configure RayCast\n \
+    - Configure AltTab"
 fi
 
-echo "########## Install cybersecurity tools"
-read -p "Are you sure? [y/n]" -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  yay -S --noconfirm --needed ghidra ghidra-desktop strace ltrace burpsuite
-fi
 
-echo -e "########## Remeber to do these other things:\n \
-- Change this setting in about:config in firefox\n \
-  - toolkit.tabbox.switchByScrolling = true\n \
-  - browser.cache.disk.parent_directory = /run/user/1000/firefox\n \
-- Add SSH key to GitHub\n \
-- Import settings for YT browser extension\n \
-- Check if ibus is working (split keyboard)\n \
-- Configure SyncThing\n \
-- Configure Rectangle and Karabiner (if MacOS)\n \
-- Configure Thunderbird"
+
+if [ "$system_type" = "Linux" ]; then
+    echo "########## Update system"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo pacman -Syu --noconfirm
+    fi
+
+    echo "########## Installing packages with pacman"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar libsixel ripgrep vim ttf-sourcecodepro-nerd tree bat fd tldr ipcalc nmap pdftk network-manager-applet syncthing cbatticon lf chafa
+    fi
+
+    echo "########## Installing Python related packages (NOT USEFUL IF YOU USE VIRTUAL ENVIRONMENTS"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo pacman -S --noconfirm --needed python-pip python-ipykernel tk
+    fi
+
+    echo "########## Installing Latex related packages"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo pacman -S --noconfirm --needed texlive texlive-langitalian
+    fi
+
+    echo "########## Installing Kubernetes related packages"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo pacman -S --noconfirm --needed minikube kubectl virualbox \
+      virtualbox-host-dkms
+    fi
+
+    echo "########## Installing power saving stuff"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      pacman -R power-profile-daemon
+      sudo pacman -S --noconfirm --needed tlp
+      yay -S --noconfirm --needed tlpui
+      systemctl enable tlp.service
+      systemctl start tlp.service
+      systemctl mask systemd-rfkill.service
+      systemctl mask systemd-rfkill.socket
+    fi
+
+    echo "########## Setup autostart for syncthing"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      systemctl --user enable syncthing.service
+      systemctl --user start syncthing.service
+    fi
+
+    echo "########## Installing packages from AUR with yay"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      yay -S --noconfirm --needed code-marketplace rofi-lbonn-wayland visual-studio-code-bin zotero-bin rmtrash ranger-git swaylock-effects
+    fi
+
+    echo "########## Setting dark theme system wide"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    fi
+
+    echo "########## Overwrite gdm rules for allowing Wayland"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
+    fi
+
+    echo "########## Enable tap-to-click in gdm"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo mkdir -p /etc/dconf/db/gdm.d
+      sudo ln $HOME/other-dots/06-tap-to-click /etc/dconf/db/gdm.d/
+    fi
+
+    echo "########## Use nvidia with sway + specific env variables"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo ln $HOME/other-dots/sway-nvidia.* /usr/share/wayland-sessions/
+    fi
+
+    echo "########## Add reset-usb command for reloading usb"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo chmod 755 $HOME/other-dots/reset-usb.sh
+      sudo ln $HOME/other-dots/reset-usb.sh /usr/local/bin/reset-usb
+    fi
+
+    echo "########## Set firefox as default application for html and pdf"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      xdg-mime default firefox.desktop text/html
+      xdg-mime default firefox.desktop application/pdf
+    fi
+
+    echo "########## Update password attempt number and unlock_time"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo sed -i.bak -e "s/^#\? *deny *= *[[:digit:]]\+ *$/deny = 10/" -e "s/^#\? *unlock_time *= *[[:digit:]]\+ *$/unlock_time = 300/" /etc/security/faillock.conf
+    fi
+
+    echo "########## Increment parallel download count"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo sed -i.bak "s/ParallelDownloads = [[:digit:]]\+/ParallelDownloads = 10/1" /etc/pacman.conf
+    fi
+
+    echo "########## Generating SSH keys with ed25519 algorithm"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      echo "Which mail are you using?"
+      read -p 'Mail: ' mail
+      ssh-keygen -t ed25519 -C $mail
+    fi
+
+    echo "########## Activate Daemon for firefox profile on RAM"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      sudo systemctl --user enable psd.service
+    fi
+
+    echo "########## Install cybersecurity tools"
+    read -p "Are you sure? [y/n]" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      yay -S --noconfirm --needed ghidra ghidra-desktop strace ltrace burpsuite
+    fi
+
+    echo -e "########## Remeber to do these other things:\n \
+    - Change this setting in about:config in firefox\n \
+      - toolkit.tabbox.switchByScrolling = true\n \
+      - browser.cache.disk.parent_directory = /run/user/1000/firefox\n \
+    - Add SSH key to GitHub\n \
+    - Import settings for YT browser extension\n \
+    - Check if ibus is working (split keyboard)\n \
+    - Configure SyncThing\n \
+    - Configure Rectangle and Karabiner (if MacOS)\n \
+    - Configure Thunderbird"
+fi
