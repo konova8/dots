@@ -16,6 +16,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 # alias c='wl-copy'
 # alias r='. ranger'
+alias sed='gsed' # Use GNU sed
 
 
 alias ls="ls -G" # MacOS specific
