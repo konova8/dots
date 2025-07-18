@@ -1,56 +1,66 @@
-### Aliases ###
-alias ls='ls --color=auto'
-alias ll='ls -laF'
-alias grep='grep --colour=auto'
-# alias update="sudo pacman -Syu && yay -Sua"
-alias lg='lazygit'
-alias lgyadm='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
-alias vi='nvim'
+system_type=$(uname -s)
+
+### Env Vars
 export EDITOR=nvim
 export VISUAL=nvim
-alias vitmp='nvim $(mktemp "/tmp/nvim.tmp.XXXXXXXX")' # MacOS specific
-# alias rm='rmtrash'
-# alias rmdir='rmdirtrash'
-# alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
+export GOPATH=/home/sc/.go
+
+### Aliases ###
+if [ "$system_type" = "Linux" ]; then
+    alias update="sudo pacman -Syu && yay -Sua"
+elif [ "$system_type" = "Darwin" ]; then
+    alias update="brew update && brew upgrade"
+fi
+
+if [ "$system_type" = "Linux" ]; then
+    alias ls='ls --color=auto'
+    alias ll='ls -laF'
+elif [ "$system_type" = "Darwin" ]; then
+    alias ls="ls -G"
+    alias ll="ls -lah"
+    alias sed='gsed'
+fi
+
+alias grep='grep --colour=auto'
+
+alias lg='lazygit'
+alias lgyadm='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
+
+alias vi='nvim'
+if [ "$system_type" = "Linux" ]; then
+    alias vitmp='nvim $(mktemp -t "/tmp/nvim.tmp.XXXXXXXX")'
+elif [ "$system_type" = "Darwin" ]; then
+    alias vitmp='nvim $(mktemp "/tmp/nvim.tmp.XXXXXXXX")'
+    alias viaws='nvim ~/.aws/credentials'
+    alias get_aws_token='~/.aws/get-tokens.sh'
+fi
+
+if [ "$system_type" = "Linux" ]; then
+    alias rm='rmtrash'
+    alias rmdir='rmdirtrash'
+    alias add-ssh-keys='eval $(ssh-agent); ssh-add -t 10m'
+fi
 alias cp='cp -i'
 alias mv='mv -i'
-# alias c='wl-copy'
-# alias r='. ranger'
-alias sed='gsed' # Use GNU sed
 
-
-alias ls="ls -G" # MacOS specific
-alias ll="ls -lah"
-alias c='pbcopy' # MacOS specific
-alias p='pbpaste' # MacOS specific
-alias viaws='nvim ~/.aws/credentials'
-alias get_aws_token='~/.aws/get-tokens.sh'
-
-# Add JBang to environment
-alias j!=jbang
-export PATH="$HOME/.jbang/bin:$PATH"
+if [ "$system_type" = "Linux" ]; then
+    alias c='wl-copy'
+elif [ "$system_type" = "Darwin" ]; then
+    alias c='pbcopy'
+    alias p='pbpaste'
+fi
 
 # Auto completion
 autoload bashcompinit && bashcompinit
 autoload -Uz +X compinit && compinit
-
-# aws cli completion
-complete -C '/usr/local/bin/aws_completer' aws
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
-## case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
-### FZF shortcuts
-# if [ -x "$(command -v fzf)"  ]
-# then
-#   source /usr/share/fzf/key-bindings.bash
-# fi
-source <(fzf --zsh)
+# FZF shortcuts
+if [ -x "$(command -v fzf)" ]; then
+  source <(fzf --zsh)
+fi
+
 
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow \
     --exclude .cache \
@@ -111,13 +121,6 @@ export FZF_CTRL_T_OPTS="
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# Add Java Home to PATH
-alias java_home="/usr/libexec/java_home"
-
 # lfcd
 LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
@@ -125,6 +128,7 @@ if [ -f "$LFCD" ]; then
     alias lf="lfcd"
 fi
 
+# Prompt
 function parse_git_branch() {
     git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/(\1)/p'
 }
@@ -133,14 +137,41 @@ COLOR_DEF=$'%f'
 COLOR_USR=$'%F{243}'
 COLOR_DIR=$'%F{197}'
 COLOR_GIT=$'%F{39}'
+TEXT_RED=$'%F{red}'
+TEXT_GREEN=$'%F{green}'
 setopt PROMPT_SUBST
-export PROMPT='${COLOR_USR}%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF} $ '
+export PROMPT='\
+$(if [[ $? == 0 ]]; then echo "${TEXT_GREEN}:)"; else echo "${TEXT_RED}:("; fi) \
+${COLOR_USR}%n \
+${COLOR_DIR}%~ \
+${COLOR_GIT}$(parse_git_branch) \
+${COLOR_DEF}$ '
 
-# Homebrew default options
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications" # Install applications in user space
-export JAVA_HOME=$(java_home -v 17)
+# MacOS Work stuff
+if [ "$system_type" = "Darwin" ]; then
+    # Add JBang to environment
+    alias j!=jbang
+    export PATH="$HOME/.jbang/bin:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+    # aws cli completion
+    complete -C '/usr/local/bin/aws_completer' aws
 
+    # Load Angular CLI autocompletion.
+    source <(ng completion script)
+
+    # NVM
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+    # Add Java Home to PATH
+    alias java_home="/usr/libexec/java_home"
+
+    # Homebrew default options
+    export HOMEBREW_CASK_OPTS="--appdir=~/Applications" # Install applications in user space
+    export JAVA_HOME=$(java_home -v 17)
+
+    # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+    export SDKMAN_DIR="$HOME/.sdkman"
+    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
