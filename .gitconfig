@@ -2,7 +2,7 @@
   editor = nvim
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [alias]
   cmit = commit
@@ -16,10 +16,10 @@
   alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 
 [push]
-    autoSetupRemote = true
+  autoSetupRemote = true
 
 [fetch]
-	prune = true
+  prune = true
 
 [include]
-    path = .gitconfig.local
+  path = .gitconfig.local
