@@ -23,3 +23,5 @@
 
 [include]
   path = .gitconfig.local
+[credential "https://github.com"]
+	useHttpPath = true
