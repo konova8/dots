@@ -26,7 +26,7 @@ if [ "$system_type" = "Darwin" ]; then
         brew install angular-cli aws-sam-cli bat coreutils fd fzf glow gnu-getopt \
             gnu-sed go jq lazygit lf lua luajit luarocks maven neovim node numpy \
             nvm openjdk prettier python ranger ripgrep tmux trash-cli tree \
-            tree-sitter wget yadm
+            tree-sitter wget yadm highlight kitty ffmpegthumbnailer
         brew install --cask ente-auth firefox@developer-edition ghostty postman \
             rar spotify ticktick whatsapp alt-tab
     fi
@@ -57,7 +57,7 @@ if [ "$system_type" = "Linux" ]; then
     echo    # (optional) move to a new line
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-      sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar libsixel ripgrep vim ttf-sourcecodepro-nerd tree bat fd tldr ipcalc nmap pdftk network-manager-applet syncthing cbatticon lf chafa
+      sudo pacman -S --noconfirm --needed wget git firefox thunderbird alacritty highlight neovim lazygit sway swaybg mpv grim swayidle go npm telegram-desktop pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop brightnessctl foot wl-clipboard wtype profile-sync-daemon xournalpp gnome-shell-extensions gnome-browser-connector zathura zathura-pdf-mupdf noto-fonts-emoji dunst nm-connection-editor swappy slurp otf-font-awesome tmux waybar ripgrep vim ttf-sourcecodepro-nerd tree bat fd tldr ipcalc nmap pdftk network-manager-applet syncthing cbatticon lf chafa
     fi
 
     echo "########## Installing Python related packages (NOT USEFUL IF YOU USE VIRTUAL ENVIRONMENTS"

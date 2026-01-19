@@ -1,11 +1,28 @@
 #!/bin/sh
+draw() {
+  kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
+  exit 1
+}
 
-case "$(file -Lb --mime-type -- "$1")" in
+file="$1"
+w="$2"
+h="$3"
+x="$4"
+y="$5"
+
+case "$(file -Lb --mime-type "$file")" in 
     image/*)
-        chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
-        exit 1
+        draw "$file"
         ;;
-    *)
-        cat "$1"
+    video/*)
+        # vidthumb is from here:
+        # https://raw.githubusercontent.com/duganchen/kitty-pistol-previewer/main/vidthumb
+        draw "$("$HOME"/.config/lf/vidthumb.sh "$file")"
         ;;
+    *.tar*) tar tf "$file";;
+    *.zip) unzip -l "$file";;
+    *.rar) unrar l "$file";;
+    *.7z) 7z l "$file";;
+    *.pdf) pdftotext "$file" -;;
+    *) highlight -O ansi --force "$file";;
 esac
