@@ -110,3 +110,5 @@ fi
 alias lf='lfcd'
 
 PS1='$(if [[ $? == 0 ]]; then echo "\[${TEXT_GREEN}\]:)"; else echo "\[${TEXT_RED}\]:("; fi) \w\n\[${TEXT_WHITE}\][\u@\H\[${TEXT_YELLOW}\]$(git_current_branch)\[${TEXT_WHITE}\]]$ '
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
