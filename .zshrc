@@ -1,5 +1,10 @@
 system_type=$(uname -s)
 
+if [ "$system_type" = "Darwin" ]; then
+    # Kiro CLI pre block. Keep at the top of this file.
+    [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+fi
+
 ### Env Vars
 export EDITOR=nvim
 export VISUAL=nvim
@@ -177,3 +182,9 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+
+if [ "$system_type" = "Darwin" ]; then
+    # Kiro CLI post block. Keep at the bottom of this file.
+    [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+fi

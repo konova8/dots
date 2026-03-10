@@ -7,6 +7,13 @@
 
 #------------------------------------------------------------
 
+system_type=$(uname -s)
+
+if [ "$system_type" = "Darwin" ]; then
+    # Kiro CLI pre block. Keep at the top of this file.
+    [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash"
+fi
+
 ### Environment Variables
 # export GOPATH=/home/sc/go
 export GOPATH=/home/sc/.go
@@ -112,3 +119,8 @@ alias lf='lfcd'
 PS1='$(if [[ $? == 0 ]]; then echo "\[${TEXT_GREEN}\]:)"; else echo "\[${TEXT_RED}\]:("; fi) \w\n\[${TEXT_WHITE}\][\u@\H\[${TEXT_YELLOW}\]$(git_current_branch)\[${TEXT_WHITE}\]]$ '
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+
+if [ "$system_type" = "Darwin" ]; then
+    # Kiro CLI post block. Keep at the bottom of this file.
+    [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
+fi
